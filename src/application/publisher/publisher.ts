@@ -1,0 +1,3 @@
+interface Publisher {
+  sendMessage(): void;
+}

@@ -3,10 +3,10 @@ import axios from "axios";
 import { PrismaClient } from "@prisma/client";
 
 export class CheerioFetcher implements Fetcher {
-  fetch(host: string, url: string): void {
+  fetch(host: string, url: string): Promise<string[]> {
     const prisma = new PrismaClient();
 
-    axios.get(url).then((response) => {
+    return axios.get(url).then((response) => {
       const html = cheerio.load(response.data);
       const title = html("title").text();
 
@@ -24,7 +24,7 @@ export class CheerioFetcher implements Fetcher {
         .toArray()
         .map((link) => link.attribs["href"]);
 
-      console.log(links[0]);
+      return links;
     });
   }
 }
