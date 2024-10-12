@@ -1,3 +1,3 @@
 interface Fetcher {
-  fetch(host: string, url: string): Promise<string[]>;
+  fetch(host: string, url: string): Promise<URL[]>;
 }
